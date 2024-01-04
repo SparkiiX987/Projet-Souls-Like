@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &342370208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 342370208, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
+  m_PrefabInstance: {fileID: 1830709055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &342370210
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342370208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &596881156
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +247,7 @@ GameObject:
   - component: {fileID: 625350784}
   - component: {fileID: 625350783}
   - component: {fileID: 625350782}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +344,7 @@ GameObject:
   - component: {fileID: 947596940}
   - component: {fileID: 947596939}
   - component: {fileID: 947596938}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +445,7 @@ GameObject:
   - component: {fileID: 1048656250}
   - component: {fileID: 1048656249}
   - component: {fileID: 1048656248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1902419182057043987, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -42.8
+      value: -42.793
       objectReference: {fileID: 0}
     - target: {fileID: 1902419182057043987, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -567,18 +585,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5983391577512372918, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5983391577512372918, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167836373550216533, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
-      propertyPath: playerMovement.m_Name
-      value: Player Movement
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742b12d3703280e42925cc8f7273653d, type: 3}
 --- !u!1 &1833392441
@@ -593,7 +599,7 @@ GameObject:
   - component: {fileID: 1833392445}
   - component: {fileID: 1833392444}
   - component: {fileID: 1833392443}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

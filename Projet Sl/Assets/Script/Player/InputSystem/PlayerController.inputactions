@@ -6,6 +6,15 @@
             "id": "dcb2297f-0267-40ce-84fc-6aa10525db61",
             "actions": [
                 {
+                    "name": "Camera",
+                    "type": "PassThrough",
+                    "id": "7040ff07-2534-4c62-b5ad-d16f6c2535ac",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Movements",
                     "type": "PassThrough",
                     "id": "06cef7a6-65e0-4640-a439-40ec81d23031",
@@ -15,10 +24,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Camera",
-                    "type": "PassThrough",
-                    "id": "cc284f8d-5d50-4b81-a32d-dfd6845a6357",
-                    "expectedControlType": "Vector2",
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "666a9f83-7b02-4d03-b069-d2c095c7195a",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -26,7 +35,7 @@
             ],
             "bindings": [
                 {
-                    "name": "ZQSD",
+                    "name": "WASD",
                     "id": "55adb78a-29be-4753-8e7d-bdb7ed5bb67e",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
@@ -39,7 +48,7 @@
                 {
                     "name": "up",
                     "id": "9e2297fc-e483-45f4-ab66-6034a9a41f76",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -50,7 +59,7 @@
                 {
                     "name": "down",
                     "id": "5694ef4f-6953-437a-9b4a-01551c1af3ba",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -82,7 +91,18 @@
                 },
                 {
                     "name": "",
-                    "id": "edbf74fa-1075-4c92-af41-eac0403b2680",
+                    "id": "11f1754c-31f2-4732-86e1-9491c73d224b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed3239b2-e038-4c30-aeb0-aa79402d86d9",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
@@ -93,7 +113,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f4fbe4ad-ea90-4fbf-a0d2-646396e9ffa8",
+                    "id": "f6abb473-2865-45cb-967f-f649f09523ca",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
