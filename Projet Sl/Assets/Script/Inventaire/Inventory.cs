@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.UI;
 
-
-
-public class slotsGenerator : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
 
     [SerializeField] private List<ItemContainer> inventoryGrid = new();
@@ -12,7 +11,7 @@ public class slotsGenerator : MonoBehaviour
     private int i;
 
     public int slotsCount;
-
+    public Item testItem;
 
 
     private void Start()
@@ -45,5 +44,10 @@ public class slotsGenerator : MonoBehaviour
             inventoryGrid[i].itemImage.sprite = item.icon;
             inventoryGrid[i].imageUpdate();
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T)) addItem(testItem);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -20,15 +18,13 @@ public enum Rarity
     Rare = 1,
     Epique = 2,
     Legendary = 3,
+    Unique = 4
 }
 [System.Serializable]
 public enum Type
 {
-    MeleeWeapon = 0,
-    DistanceWeapon = 1,
-    HealWeapon = 2,
-    Implant = 3,
-    Helmet = 4,
-    Chestplate = 5,
-    Leging = 6
+    Weapon = 0,
+    Helmet = 1,
+    Chestplate = 2,
+    Leging = 3
 }
