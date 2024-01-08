@@ -15,7 +15,7 @@ public class PlayerLocomotion : MonoBehaviour
         [Header("Stats")]
         [SerializeField] float movementSpeed = 5;
         [SerializeField] float sprintSpeed = 8;
-        [SerializeField] float jumpHeight = 10;
+        [SerializeField] float jumpHeight = 8;
         [SerializeField] float dodgeDistance = 10;
         private Vector3 lastMoveDirection;
 
@@ -134,7 +134,9 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (isGrounded)
         {
-            Inertie();
+            float jumpForce = Mathf.Sqrt(2f * jumpHeight * -Physics.gravity.y);
+            rb.AddForce((Vector3.up + lastMoveDirection) * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
         }
     }
 
@@ -142,7 +144,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (!isDodging)
         {
-            rb.AddForce((new Vector3(1, 0, 1) + lastMoveDirection) * dodgeDistance, ForceMode.VelocityChange);
+            rb.velocity = Vector3.zero;
             isDodging = true;
             StartCoroutine(StopDodging());
         }
@@ -150,14 +152,8 @@ public class PlayerLocomotion : MonoBehaviour
 
     IEnumerator StopDodging()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         isDodging = false;
-    }
-
-    public void Inertie()
-    {
-        float addForce = Mathf.Sqrt(2f * jumpHeight * -Physics.gravity.y);
-        rb.AddForce((Vector3.up + lastMoveDirection) * addForce, ForceMode.VelocityChange);
     }
 
     public void GroundCheck()
