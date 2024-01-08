@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +7,7 @@ public class PlayerLocomotion : MonoBehaviour
     #region PlayerRef
         Vector3 moveDirection;
         private new Rigidbody rb;
+        private PlayerStats stats;
 
         [HideInInspector]
         public Transform myTransform;
@@ -68,6 +68,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     void Start()
     {
+        stats = GetComponent<PlayerStats>();
         myTransform = transform;
         rb = GetComponent<Rigidbody>();
         Cursor.visible = false;
@@ -122,43 +123,60 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void StartSprint()
     {
-        isSprinting = true;
+        if (!stats.noStamina)
+        {
+            isSprinting = true;
+            StartCoroutine(stats.DrainStamina());
+            StopCoroutine(stats.RegenStamina());
+        }
     }
 
     public void StopSprint()
     {
         isSprinting = false;
+        StopCoroutine(stats.DrainStamina());
+        StartCoroutine(stats.RegenStamina());
     }
 
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && !stats.noStamina)
         {
-            float jumpForce = Mathf.Sqrt(2f * jumpHeight * -Physics.gravity.y);
+            float jumpForce = Mathf.Sqrt(3f * jumpHeight * -Physics.gravity.y);
             rb.AddForce((Vector3.up + lastMoveDirection) * jumpForce, ForceMode.Impulse);
+            stats.stamina -= 10;
             isGrounded = false;
         }
     }
 
     public void Dodge()
     {
-        if (!isDodging)
+        if (!isDodging && isGrounded && !stats.noStamina)
         {
-            rb.velocity = Vector3.zero;
+            Vector3 dodgeVelocity = transform.forward * dodgeDistance;
+            rb.AddForce(dodgeVelocity, ForceMode.VelocityChange);
             isDodging = true;
             StartCoroutine(StopDodging());
+            stats.stamina -= 20;
         }
     }
 
     IEnumerator StopDodging()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
+        rb.velocity = Vector3.zero;
         isDodging = false;
     }
 
     public void GroundCheck()
     {
         Collider[] colliders = Physics.OverlapBox(groundCheck.position, Vector3.one * 0.5f, Quaternion.identity, groundLayer);
+        bool wasGrounded = isGrounded;
         isGrounded = colliders.Length > 0;
+
+        if (!wasGrounded && isGrounded)
+        {
+            rb.velocity = Vector3.zero; 
+        }
     }
 }
