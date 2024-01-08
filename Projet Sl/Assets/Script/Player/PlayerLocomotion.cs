@@ -9,49 +9,60 @@ public class PlayerLocomotion : MonoBehaviour
         Vector3 moveDirection;
         private new Rigidbody rb;
 
-    [HideInInspector]
+        [HideInInspector]
         public Transform myTransform;
 
         [Header("Stats")]
         [SerializeField] float movementSpeed = 5;
+        [SerializeField] float sprintSpeed = 8;
         [SerializeField] float jumpHeight = 10;
         [SerializeField] float dodgeDistance = 10;
+        private Vector3 lastMoveDirection;
 
         [Header("Collisions Detection")]
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
 
+
+        [Header("Bool Check")]
         public bool isGrounded;
-        private Vector3 lastMoveDirection;
         public bool isSprinting;
         public bool isDodging;
     #endregion
 
     #region InputList
         public InputAction moveAction;
+        public InputAction sprintAction;
         public InputAction jumpAction;
         public InputAction dodgeAction;
     #endregion
 
     #region Camera
-    public GameObject cameraObject;
+        public GameObject cameraObject;
         public float mouseSensitivity = 2f;
         float cameraVerticalRotation = 0f;
-        bool lockedCursor = true;
     #endregion
 
     private void OnEnable()
     {
         moveAction.Enable();
+        sprintAction.Enable();
         jumpAction.Enable();
+        dodgeAction.Enable();
 
         jumpAction.performed += _ => Jump();
+        dodgeAction.performed += _ => Dodge();
+
+        sprintAction.started += _ => StartSprint();
+        sprintAction.canceled += _ => StopSprint();
     }
 
     private void OnDisable()
     {
         moveAction.Disable();
+        sprintAction.Disable();
         jumpAction.Disable();
+        dodgeAction.Disable();
     }
 
 
@@ -92,25 +103,61 @@ public class PlayerLocomotion : MonoBehaviour
 
             moveDirection = (transform.right * inputX + transform.forward * inputZ).normalized;
 
-            Vector3 movement = moveDirection * movementSpeed * Time.deltaTime;
+            Vector3 movement;
+
+            if (isSprinting)
+            {
+                movement = moveDirection * sprintSpeed * Time.deltaTime;
+            }
+            else
+            {
+                movement = moveDirection * movementSpeed * Time.deltaTime;
+            }
+
             rb.MovePosition(transform.position + movement);
         }
 
         lastMoveDirection = moveDirection;
     }
 
+    public void StartSprint()
+    {
+        isSprinting = true;
+    }
+
+    public void StopSprint()
+    {
+        isSprinting = false;
+    }
+
     public void Jump()
     {
         if (isGrounded)
         {
-            float jumpForce = Mathf.Sqrt(2f * jumpHeight * -Physics.gravity.y);
-            rb.AddForce((Vector3.up + lastMoveDirection) * jumpForce / 1.5f, ForceMode.VelocityChange);
+            Inertie();
         }
     }
 
     public void Dodge()
     {
-        
+        if (!isDodging)
+        {
+            rb.AddForce((new Vector3(1, 0, 1) + lastMoveDirection) * dodgeDistance, ForceMode.VelocityChange);
+            isDodging = true;
+            StartCoroutine(StopDodging());
+        }
+    }
+
+    IEnumerator StopDodging()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isDodging = false;
+    }
+
+    public void Inertie()
+    {
+        float addForce = Mathf.Sqrt(2f * jumpHeight * -Physics.gravity.y);
+        rb.AddForce((Vector3.up + lastMoveDirection) * addForce, ForceMode.VelocityChange);
     }
 
     public void GroundCheck()
