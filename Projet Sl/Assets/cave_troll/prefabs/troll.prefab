@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 4882914989025602}
   - component: {fileID: 33407584003241822}
   - component: {fileID: 23221504225770740}
+  - component: {fileID: 1542218884}
   m_Layer: 0
   m_Name: mace_low
   m_TagString: Untagged
@@ -226,6 +227,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1542218884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077419662316846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 74.98611, y: 338.1503, z: 116.350975}
+  m_Center: {x: 15.797447, y: -92.90674, z: -39.26206}
 --- !u!1 &1097627651781724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2469,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656633672578282}
-  m_LocalRotation: {x: -0.17698495, y: 0.96568006, z: 0.083615, w: 0.17072493}
+  m_LocalRotation: {x: -0.17785639, y: 0.9653351, z: 0.084026694, w: 0.17156553}
   m_LocalPosition: {x: 0.000030517578, y: 0.00001335144, z: 35.11202}
   m_LocalScale: {x: 0.99999964, y: 1.0000018, z: 0.9999993}
   m_ConstrainProportionsScale: 0
@@ -2646,7 +2660,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720319449766700}
-  m_LocalRotation: {x: -5.1873353e-11, y: 0.00000009324858, z: 0.0504932, w: 0.9987244}
+  m_LocalRotation: {x: -6.435725e-11, y: 0.00000011568988, z: 0.06264494, w: 0.99803585}
   m_LocalPosition: {x: -25.269989, y: 0.0000038146973, z: -0.0000009536743}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.9999999}
   m_ConstrainProportionsScale: 0
@@ -3201,6 +3215,7 @@ GameObject:
   - component: {fileID: 95309135661054092}
   - component: {fileID: 1277212663}
   - component: {fileID: 1277212664}
+  - component: {fileID: 4552810733046320995}
   m_Layer: 0
   m_Name: troll
   m_TagString: Untagged
@@ -3283,6 +3298,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4552810733046320995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862107410815556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bf3aa1a5db0a1a46bbb11195669f08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1868828153997032
 GameObject:
   m_ObjectHideFlags: 0
